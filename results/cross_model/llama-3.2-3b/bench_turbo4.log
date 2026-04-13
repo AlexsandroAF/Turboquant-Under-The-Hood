@@ -1,0 +1,8 @@
+ggml_cuda_init: found 1 CUDA devices (Total VRAM: 4095 MiB):
+  Device 0: NVIDIA GeForce RTX 3050 Laptop GPU, compute capability 8.6, VMM: yes, VRAM: 4095 MiB
+| model                          |       size |     params | backend    | ngl | type_k | type_v | fa |            test |                  t/s |
+| ------------------------------ | ---------: | ---------: | ---------- | --: | -----: | -----: | -: | --------------: | -------------------: |
+| llama 3B Q4_K - Medium         |   1.87 GiB |     3.21 B | CUDA       |  99 | turbo4 | turbo4 |  1 |           pp512 |      2091.11 ± 67.26 |
+| llama 3B Q4_K - Medium         |   1.87 GiB |     3.21 B | CUDA       |  99 | turbo4 | turbo4 |  1 |           tg128 |         59.73 ± 1.48 |
+
+build: 8590cbf (1)

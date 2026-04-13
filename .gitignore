@@ -1,0 +1,32 @@
+# Models (too large for git)
+prototype/models/
+*.gguf
+
+# Prebuilt binaries
+prototype/llama_cpp_bin/
+prototype/llama_turbo_prebuilt/
+prototype/build_tools/
+
+# llama.cpp source + build artifacts (766 MB)
+prototype/llama-cpp-turboquant/
+
+# Reference repos (cloned separately)
+referencia/repos/
+
+# Reference PDFs (copyright — linked in docs)
+referencia/pdfs/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Docker artifacts
+*.tar
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

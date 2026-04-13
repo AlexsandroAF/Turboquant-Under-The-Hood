@@ -1,0 +1,49 @@
+{
+  "config": {
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "k_bits": 4,
+    "v_bits": 3,
+    "residual_window": 64,
+    "protect_init": 2,
+    "protect_final": 2,
+    "max_new_tokens": 32,
+    "prompt_tokens": 602
+  },
+  "baseline": {
+    "prompt_len": 602,
+    "gen_len": 32,
+    "prefill_time_s": 0.40112972259521484,
+    "decode_time_s": 1.9323077201843262,
+    "decode_tok_per_s": 16.560509315228252,
+    "vram_peak_mb": 1142.7119140625,
+    "generated_text": " The transistor was invented by John Bardeen, Walter Brattain, and William Shockley in 1947. \n\nThe passage also mentions that Alan"
+  },
+  "turbo": {
+    "prompt_len": 602,
+    "gen_len": 32,
+    "prefill_time_s": 0.14833498001098633,
+    "decode_time_s": 2.699350357055664,
+    "decode_tok_per_s": 11.854704194421146,
+    "vram_peak_mb": 1155.18896484375,
+    "generated_text": " The transistor was invented by John Bardeen, Walter Brattain, and William Shockley in 1947. Alan Turing is often credited with the",
+    "turbo_metrics": {
+      "total_quantize_calls": 640,
+      "bytes_saved": 72264960,
+      "bytes_fp16_equiv": 90685440,
+      "bytes_compressed": 18420480,
+      "k_quantized": 0,
+      "v_quantized": 640,
+      "k_max_abs": 0.0,
+      "v_max_abs": 0.0,
+      "compression_ratio": 4.923076923076923
+    }
+  },
+  "comparison": {
+    "token_match_rate": 0.78125,
+    "first_divergence_at": 25,
+    "logits_cosine_sim": 0.8736517429351807,
+    "top1_agreement": 0.78125,
+    "top5_overlap_rate": 0.63125
+  },
+  "baseline_ppl": 4.750007629394531
+}

@@ -1,0 +1,49 @@
+{
+  "config": {
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "k_bits": 8,
+    "v_bits": 4,
+    "residual_window": 128,
+    "protect_init": 4,
+    "protect_final": 4,
+    "max_new_tokens": 32,
+    "prompt_tokens": 602
+  },
+  "baseline": {
+    "prompt_len": 602,
+    "gen_len": 32,
+    "prefill_time_s": 0.36216020584106445,
+    "decode_time_s": 1.8997182846069336,
+    "decode_tok_per_s": 16.84460283363596,
+    "vram_peak_mb": 1142.7119140625,
+    "generated_text": " The transistor was invented by John Bardeen, Walter Brattain, and William Shockley in 1947. \n\nThe passage also mentions that Alan"
+  },
+  "turbo": {
+    "prompt_len": 602,
+    "gen_len": 32,
+    "prefill_time_s": 0.43495702743530273,
+    "decode_time_s": 2.9014828205108643,
+    "decode_tok_per_s": 11.028843518834194,
+    "vram_peak_mb": 1270.4873046875,
+    "generated_text": " The transistor was invented by John Bardeen, Walter Brattain, and William Shockley at Bell Labs in 1947. \n\nCan you provide",
+    "turbo_metrics": {
+      "total_quantize_calls": 512,
+      "bytes_saved": 78194688,
+      "bytes_fp16_equiv": 128319488,
+      "bytes_compressed": 50124800,
+      "k_quantized": 512,
+      "v_quantized": 512,
+      "k_max_abs": 0.0,
+      "v_max_abs": 0.0,
+      "compression_ratio": 2.56
+    }
+  },
+  "comparison": {
+    "token_match_rate": 0.5625,
+    "first_divergence_at": 18,
+    "logits_cosine_sim": 0.7787021398544312,
+    "top1_agreement": 0.5625,
+    "top5_overlap_rate": 0.59375
+  },
+  "baseline_ppl": 4.750007629394531
+}

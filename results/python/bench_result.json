@@ -1,0 +1,45 @@
+{
+  "config": {
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "k_bits": 4,
+    "v_bits": 4,
+    "residual_window": 64,
+    "protect_init": 2,
+    "protect_final": 2,
+    "max_new_tokens": 48,
+    "prompt_tokens": 602
+  },
+  "baseline": {
+    "prompt_len": 602,
+    "gen_len": 48,
+    "prefill_time_s": 1.7341723442077637,
+    "decode_time_s": 3.1059417724609375,
+    "decode_tok_per_s": 15.454249794891698,
+    "vram_peak_mb": 1142.7119140625,
+    "generated_text": " The transistor was invented by John Bardeen, Walter Brattain, and William Shockley in 1947. \n\nThe passage also mentions that Alan Turing's theoretical work in the 1930s laid the foundation for"
+  },
+  "turbo": {
+    "prompt_len": 602,
+    "gen_len": 48,
+    "prefill_time_s": 0.5049917697906494,
+    "decode_time_s": 4.9922401905059814,
+    "decode_tok_per_s": 9.614921992592473,
+    "vram_peak_mb": 1163.625,
+    "generated_text": " The answer is Ada Lovelace. She worked with Babbage's Analytical Engine, which was the first general-purpose computer. The first microprocessor was the first to appear in 1948. The first general computer, the",
+    "turbo_metrics": {
+      "total_quantize_calls": 960,
+      "bytes_saved": 202679040,
+      "bytes_fp16_equiv": 275988480,
+      "bytes_compressed": 73309440,
+      "compression_ratio": 3.764705882352941
+    }
+  },
+  "comparison": {
+    "token_match_rate": 0.02083333395421505,
+    "first_divergence_at": 1,
+    "logits_cosine_sim": 0.5229703783988953,
+    "top1_agreement": 0.02083333395421505,
+    "top5_overlap_rate": 0.09583333333333333
+  },
+  "baseline_ppl": 4.750007629394531
+}
