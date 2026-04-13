@@ -95,6 +95,14 @@ python test_synthetic.py
 
 Expected: all 12 tests pass (4 bit-widths x 3 dimensions), MSE within paper bounds.
 
+### Quickstart — Quantize Your First Vector
+
+```bash
+python examples/quickstart.py
+```
+
+No GPU, no model download. Shows the full quantize-dequantize cycle on a single vector, validates against paper bounds, and sweeps all bit-widths.
+
 ### Run PPL Benchmark (with patches)
 
 ```bash
@@ -142,6 +150,36 @@ See [`knowledge-base/`](knowledge-base/) for the full collection.
 - **RaBitQ**: Gao & Long, SIGMOD 2024. [arXiv:2405.12497](https://arxiv.org/abs/2405.12497)
 - **RotorQuant**: [github.com/scrya-com/rotorquant](https://github.com/scrya-com/rotorquant)
 - **llama.cpp TurboQuant fork**: [github.com/TheTom/llama-cpp-turboquant](https://github.com/TheTom/llama-cpp-turboquant)
+
+---
+
+## FAQ
+
+**Does TurboQuant work on my model?**
+
+It depends on your model's KV cache distribution. Gemma and Mistral have well-behaved KV vectors and work great (turbo3 at +2.8% PPL). Qwen2.5 has extreme K/V norm asymmetry and breaks badly without the patches described here. Llama 3 is somewhere in between. If you're unsure, start with q8_0 (safe on everything) and test turbo4 on your specific model.
+
+**Do I need an H100?**
+
+No. All our tests ran on an RTX 3050 Laptop (4 GB VRAM). The algorithm works on any CUDA GPU. However, the paper's "8x speedup" claim is specific to H100's INT4 tensor cores — on consumer GPUs, TurboQuant is typically 5-15% *slower* than baseline due to rotation overhead. The benefit on consumer hardware is memory savings, not speed.
+
+**What's the difference between TurboQuant and GPTQ/AWQ/GGUF quantization?**
+
+GPTQ/AWQ/GGUF quantize the *model weights* (permanent, done once before deployment). TurboQuant quantizes the *KV cache* (temporary, done during inference). They solve different problems and work together — you can run a Q4_K_M GGUF model with TurboQuant KV cache compression on top.
+
+**Should I use QJL (Algorithm 2 from the paper)?**
+
+Probably not. Six independent community implementations found that QJL degrades quality when used with softmax attention. MSE-only (Algorithm 1) performs better in practice. See our knowledge base for details.
+
+**Why does your V1 implementation show +2756% PPL but the paper claims zero loss?**
+
+Three implementation details explain the gap: (1) we were re-quantizing already-quantized tokens (compound error), (2) we used uniform 3-bit instead of mixed 3.5-bit with outlier channels, (3) we quantized during prefill instead of deferring to decode. Our V3 with all three fixes achieves +0.32% PPL. See [paper/RESEARCH.md](paper/RESEARCH.md) Section 6 for the full story.
+
+**Can I use this in production?**
+
+The Python prototype here is for research and education. For production, use the [TheTom/llama-cpp-turboquant](https://github.com/TheTom/llama-cpp-turboquant) fork (C++/CUDA) or stick with `--cache-type-k q8_0 --cache-type-v q8_0` in mainline llama.cpp (1.9x compression, zero quality loss, battle-tested).
+
+---
 
 ## Author
 
