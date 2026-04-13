@@ -143,6 +143,10 @@ See [`knowledge-base/`](knowledge-base/) for the full collection.
 - **RotorQuant**: [github.com/scrya-com/rotorquant](https://github.com/scrya-com/rotorquant)
 - **llama.cpp TurboQuant fork**: [github.com/TheTom/llama-cpp-turboquant](https://github.com/TheTom/llama-cpp-turboquant)
 
+## Author
+
+**Alexsandro Furtado** — independent researcher
+
 ## License
 
 MIT

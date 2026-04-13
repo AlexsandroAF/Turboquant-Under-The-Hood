@@ -1,6 +1,6 @@
 # Reproducing TurboQuant: What the Paper Promises, What Actually Works, and the Three Engineering Details That Close the Gap
 
-**Authors**: Haikom (independent researcher)  
+**Author**: Alexsandro Furtado (independent researcher)  
 **Date**: April 2026  
 **Hardware**: NVIDIA RTX 3050 Laptop (4 GB VRAM), Windows 11, Docker/WSL2  
 **Models tested**: Qwen2.5-0.5B, Qwen2.5-3B, Gemma-2-2B, Llama-3.2-3B, Llama-3.1-8B  
